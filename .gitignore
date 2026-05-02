@@ -141,3 +141,23 @@ dist
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 .vite/
+
+# Node default
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# env (WAJIB)
+.env
+
+# logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# project-specific
+data.json
+lastLinks.json
