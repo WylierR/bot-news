@@ -8,7 +8,44 @@ const parser = new Parser({
 const WEBHOOK_URL = process.env.WEBHOOK_URL;
 
 // daftar kategori
-const SOURCES = JSON.parse(process.env.SOURCES_JSON || "[]");
+// const SOURCES = JSON.parse(process.env.SOURCES_JSON || "[]");
+const SOURCES = [
+  {
+    name: "Teknologi",
+    url: "https://www.cnnindonesia.com/teknologi/rss",
+    color: 3447003,
+  },
+  {
+    name: "Nasional",
+    url: "https://www.cnnindonesia.com/nasional/rss",
+    color: 15105570,
+  },
+  {
+    name: "Internasional",
+    url: "https://www.cnnindonesia.com/internasional/rss",
+    color: 15105570,
+  },
+  {
+    name: "Olahraga",
+    url: "https://www.cnnindonesia.com/olahraga/rss",
+    color: 15105570,
+  },
+  {
+    name: "otomotif",
+    url: "https://www.cnnindonesia.com/otomotif/rss",
+    color: 15105570,
+  },
+  {
+    name: "Hiburan",
+    url: "https://www.cnnindonesia.com/hiburan/rss",
+    color: 15105570,
+  },
+  {
+    name: "Ekonomi",
+    url: "https://www.cnnindonesia.com/ekonomi/rss",
+    color: 15105570,
+  },
+];
 
 // simpan history
 let sentLinks = new Set();
@@ -50,7 +87,7 @@ async function checkFeeds() {
 
   // batasi memory
   if (sentLinks.size > 100) {
-    sentLinks.clear();
+    sentLinks = new Set([...sentLinks].slice(-50));
   }
 }
 
@@ -79,5 +116,5 @@ function extractImage(item) {
   return null;
 }
 
-// jalan tiap 5 menit
+checkFeeds(); // jalan langsung
 setInterval(checkFeeds, 5 * 60 * 1000);
